@@ -1,46 +1,40 @@
-# 🧠 Clusterização de Clientes
+# Clusterização de Clientes com K-Means
 
-Este projeto tem como objetivo aplicar técnicas de Machine Learning não supervisionado para segmentar clientes com base em características comportamentais e demográficas. A clusterização permite identificar perfis distintos de consumidores, possibilitando estratégias de marketing mais personalizadas e eficientes.
+## 1. Visão Geral do Projeto
+Este projeto tem como objetivo realizar a **segmentação de clientes** de um shopping utilizando o algoritmo de aprendizado não supervisionado **K-Means**. A segmentação permite identificar padrões de comportamento e agrupar os clientes em perfis distintos, fornecendo insights para estratégias de marketing personalizadas e otimização de vendas.
 
-📌 Objetivos
+---
 
-Identificar agrupamentos naturais entre clientes.
-Aplicar algoritmos de clusterização, como K-Means, para descobrir padrões ocultos nos dados.
-Analisar os grupos formados para extrair insights acionáveis.
+## 2. Estrutura do Dataset
+O modelo utiliza o arquivo `Mall_Customers.csv`, que contém informações de **200 clientes** com os seguintes atributos:
 
-🔧 Tecnologias Utilizadas
+*   **CustomerID:** Identificador único do cliente.
+*   **Gender:** Gênero (Masculino / Feminino).
+*   **Age:** Idade do cliente.
+*   **Annual Income (k$):** Renda anual do cliente (em milhares de dólares).
+*   **Spending Score (1-100):** Pontuação de gastos atribuída pelo shopping com base no comportamento de compra.
 
-Python
-Pandas — manipulação de dados
-Matplotlib e Seaborn — visualização gráfica
-Scikit-learn — algoritmo de clusterização (K-Means), padronização com StandardScaler
-Plotly — gráficos interativos (se aplicável)
-Jupyter Notebook
+---
 
-📊 Etapas do Projeto
+## 3. Pipeline do Projeto
 
-1. Importação e exploração dos dados
-- Carregamento do dataset e análise exploratória inicial.
+### 🛠️ Exploração e Tratamento dos Dados
+1.  **Leitura e Inspeção:** Carga dos dados utilizando a biblioteca `pandas` e verificação inicial com `.head()` e `.info()`.
+2.  **Limpeza:** Verificação de dados ausentes e análise de inconsistências na variável categórica `Gender` via `.unique()`.
+3.  **Seleção de Atributos:** Remoção das colunas `CustomerID` e `Gender` por não serem correlacionadas diretamente à formação geométrica dos clusters no algoritmo de distância.
+4.  **Análise Descritiva:** Uso do `.describe()` para avaliar a distribuição, médias e medianas, seguido de uma análise visual de outliers via `boxplot`.
 
-2. Pré-processamento
-- Tratamento de dados nulos
-- Padronização das variáveis numéricas
-- Seleção de features relevantes
+### 🤖 Modelagem (K-Means)
+O projeto utiliza o algoritmo **K-Means** (via `scikit-learn`) para encontrar grupos homogêneos baseados nas características de idade, renda e pontuação de gastos. 
 
-3. Clusterização com K-Means
-- Escolha do número ideal de clusters utilizando o método do cotovelo (elbow method)
-- Treinamento do modelo e previsão dos grupos
+*Nota: O código inclui as etapas para preparação de escala dos dados (`StandardScaler`) e identificação do número ideal de clusters.*
 
-4. Análise dos clusters
-- Visualização gráfica dos agrupamentos
-- Interpretação dos perfis de cada cluster
+---
 
-📁 Organização do Repositório
+## 4. Tecnologias Utilizadas
 
-- Clusterização_de_clientes.ipynb — notebook com todo o processo de clusterização
-- README.md — este arquivo de documentação
-- Mall_Customers.csv - base de dados
-
-🚀 Resultados
-
-A clusterização permitiu identificar diferentes perfis de clientes, agrupando-os com base em padrões semelhantes de comportamento. Esses insights podem ser utilizados para ações mais direcionadas, como ofertas personalizadas, retenção de clientes ou campanhas específicas para cada grupo.
+*   **Python 3**
+*   **Pandas:** Manipulação e análise de dados.
+*   **Seaborn / Matplotlib:** Visualização estatística e análise de outliers.
+*   **Plotly Express:** Gráficos interativos para análise tridimensional dos clusters.
+*   **Scikit-Learn:** Pré-processamento (`StandardScaler`) e o modelo de agrupamento (`KMeans`).
